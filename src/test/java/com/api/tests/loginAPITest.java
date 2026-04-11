@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.lessThan;
 import org.testng.annotations.Test;
 
 import com.api.pojo.UserCredentials;
-import com.api.utils.ConfigManager;
+import static com.api.utils.ConfigManager.*;
 
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -17,10 +17,10 @@ public class loginAPITest {
 	@Test
 	public void loginTest() {
 	
-		
+		System.out.println("------->"+System.getProperty("env"));
 		UserCredentials userCredentials = new UserCredentials("iamfd", "password");
 	    given()
-	        .baseUri(ConfigManager.getProperties("BASE_URI"))
+	        .baseUri(getProperties("BASE_URI"))
 	        .and()
 	        .contentType(ContentType.JSON)
 	        .and()
