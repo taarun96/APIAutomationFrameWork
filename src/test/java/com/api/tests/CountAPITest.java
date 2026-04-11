@@ -1,6 +1,6 @@
 package com.api.tests;
 
-import static com.api.constants.Role.FD;
+import static com.api.constants.Role.*;
 import static com.api.utils.AuthTokenProvider.*;
 import static com.api.utils.ConfigManager.*;
 import static io.restassured.RestAssured.*;
@@ -13,7 +13,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.*;
 public class CountAPITest {
 	@Test
 	public void countAPITest() {
-		given().baseUri(getProperties("BASE_URI")).and().header("Authorization", getToken(FD)).when()
+		given().baseUri(getProperty("BASE_URI")).and().header("Authorization", getToken(FD)).when()
 				.get("/dashboard/count").then().log().all().statusCode(200).and().body("message", equalTo("Success"))
 				.time(lessThan(1000L)).body("data", notNullValue()).body("data.size()", equalTo(3))
 				.body("data.count", everyItem(greaterThanOrEqualTo(0)))
@@ -26,7 +26,7 @@ public class CountAPITest {
 	@Test
 	public void countAPITest_MissingAuthToken() {
 	    given()
-	        .baseUri(getProperties("BASE_URI"))
+	        .baseUri(getProperty("BASE_URI"))
 	        .and()
 	        .log().uri()
 	        .log().method()

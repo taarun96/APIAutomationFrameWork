@@ -36,7 +36,7 @@ public class AuthTokenProvider {
 			  userCredentials = new UserCredentials("iamfd", "password");
 		}
 
-		String token = given().baseUri(ConfigManager.getProperties("BASE_URI")).and().contentType(ContentType.JSON)
+		String token = given().baseUri(ConfigManager.getProperty("BASE_URI")).and().contentType(ContentType.JSON)
 				.and().accept(ContentType.JSON).and().body(userCredentials).log().uri().log()
 				.method().log().headers().log().body().when().post("login").then().log().ifValidationFails()
 				.statusCode(200).time(lessThan(1000L)).body("message", equalTo("Success")).and().extract().body()
