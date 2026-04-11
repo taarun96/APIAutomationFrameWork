@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>RestAssuredAutomationFramework</groupId>
+  <artifactId>RestAssuredAutomationFramework</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>RestAssuredAutomationFramework</name>
+  <description>RestAssuredAutomationFramework with Java,TestNG,Rest Assured </description>
+  <!-- Source: https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+<dependencies>
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>${restassured.version}</version>
+    <scope>test</scope>
+</dependency>
+<!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>${jackson-databind.version}</version>
+    <scope>compile</scope>
+</dependency>
+<!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>${testng.version}</version>
+    <scope>test</scope>
+</dependency>
+<!-- Source: https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>json-schema-validator</artifactId>
+    <version>${io.rest-assured.version}</version>
+    <scope>compile</scope>
+</dependency>
+</dependencies>
+  <properties>
+    <restassured.version>6.0.0</restassured.version>
+    <testng.version>7.12.0</testng.version>
+    <io.rest-assured.version>6.0.0</io.rest-assured.version>
+    <jackson-databind.version>2.15.2</jackson-databind.version>
+  <maven.compiler.source>11</maven.compiler.source>
+  <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+</project>
