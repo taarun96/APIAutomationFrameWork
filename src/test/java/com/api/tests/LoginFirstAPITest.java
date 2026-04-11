@@ -23,7 +23,7 @@ public class LoginFirstAPITest {
 				.and().body(userCredentials).log().uri().log().method().log().headers().log().body().when()
 				.post("login").then().log().all().statusCode(200).time(lessThan(1000L)).and()
 				.body("message", equalTo("Success")).and()
-				.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
+				.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/LoginFirstResponseSchema.json"));
 	}
 
 }
