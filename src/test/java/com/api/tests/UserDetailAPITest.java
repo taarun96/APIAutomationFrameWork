@@ -15,7 +15,7 @@ import io.restassured.http.Header;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 
-public class userDetailsAPITest {
+public class UserDetailAPITest {
 	@Test
 	public void userDetailsAPITest() {
 

@@ -12,7 +12,7 @@ import static com.api.utils.ConfigManager.*;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
-public class loginAPITest {
+public class LoginFirstAPITest {
 
 	@Test
 	public void loginTest() {
