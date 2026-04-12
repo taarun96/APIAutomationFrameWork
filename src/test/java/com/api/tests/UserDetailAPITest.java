@@ -1,31 +1,30 @@
 package com.api.tests;
 
-import static com.api.utils.AuthTokenProvider.*;
-import static com.api.utils.ConfigManager.*;
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
+import static io.restassured.RestAssured.given;
 
+import java.io.IOException;
 
 import org.testng.annotations.Test;
 
-import com.api.constants.Role;
+import com.api.utils.SpecUtil;
 
-import io.restassured.http.ContentType;
-import io.restassured.http.Header;
 import io.restassured.module.jsv.JsonSchemaValidator;
+
+import static com.api.constants.Role.*;
 
 
 public class UserDetailAPITest {
 	@Test
-	public void userDetailsAPITest() {
+    public void userDetailsAPITest() throws IOException {
+        
+        given()
+            .spec(SpecUtil.requestSpecWithAuth(FD)) 
+        .when()
+            .get("userdetails") 
+        .then()
+            .spec(SpecUtil.responseSpec_OK()) 
+            .and()
+            .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/UserDetailsResponseSchema.json"));
+    }
 
-		Header authHeader = new Header("Authorization",
-				getToken(Role.FD));
-		given().baseUri(getProperty("BASE_URI")).and().header(authHeader).and().accept(ContentType.JSON).log().uri()
-				.log().method().log().body().log().headers().when().get("userdetails").then().log().all()
-				.statusCode(200).time(lessThan(1000L)).and()
-				.body("message", equalTo("Success")).and().body(JsonSchemaValidator
-						.matchesJsonSchemaInClasspath("response-schema/UserDetailsResponseSchema.json"));
-
-	}
 }
