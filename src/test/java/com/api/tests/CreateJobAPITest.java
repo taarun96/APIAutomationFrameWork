@@ -1,6 +1,7 @@
 package com.api.tests;
 
 import static com.api.constants.Role.FD;
+import static com.api.utils.DateTimeUtil.getTimeWithDaysAgo;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
@@ -10,12 +11,18 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
+import com.api.constants.Model;
+import com.api.constants.OEM;
+import com.api.constants.Platform;
+import com.api.constants.Problem;
+import com.api.constants.Product;
+import com.api.constants.ServiceLocation;
+import com.api.constants.Warranty_Status;
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
-import static com.api.utils.DateTimeUtil.*;
 import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -28,11 +35,18 @@ public class CreateJobAPITest {
 		Customer customer=new Customer("Taarun", "Purusothaman", "9823329021", "", "taarun96@gmail.com", "");
 		//Customer customer=new Customer();
 		CustomerAddress customerAddress=new CustomerAddress("c 304", "Jupiter", "MG road", "Bangur Nagar", "Goregaon West", "411039", "India", "Maharashtra");
-		CustomerProduct customerProduct=new CustomerProduct(getTimeWithDaysAgo(10), "16871421225407", "16871421225407", "16871421225407", getTimeWithDaysAgo(10), 1, 1);
-		Problems problems=new Problems(1, "Battery Issue");
+		CustomerProduct customerProduct=new CustomerProduct(getTimeWithDaysAgo(10),
+				"16971421225407", "16971421225407", "16971421225407", getTimeWithDaysAgo(10),
+				Product.NEXUS_2.getCode(),
+				Model.NEXUS_2_BLUE.getCode());
+		Problems problems=new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
 		List<Problems> problemList=new ArrayList();
 		problemList.add(problems);
-		CreateJobPayload createJobPayload =new CreateJobPayload(0, 2, 1, 1, customer, customerAddress, customerProduct, problemList);
+		CreateJobPayload createJobPayload =new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(),
+				Platform.FRONT_DESK.getCode(),
+				Warranty_Status.IN_WARRANTY.getCode(), 
+				OEM.GOOGLE.getCode(), 
+				customer, customerAddress, customerProduct, problemList);
 		
 		
 		
