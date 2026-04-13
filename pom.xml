@@ -40,8 +40,8 @@
     <testng.version>7.12.0</testng.version>
     <io.rest-assured.version>6.0.0</io.rest-assured.version>
     <jackson-databind.version>2.15.2</jackson-databind.version>
-  <maven.compiler.source>14</maven.compiler.source>
-  <maven.compiler.target>14</maven.compiler.target>
+  <maven.compiler.source>15</maven.compiler.source>
+  <maven.compiler.target>15</maven.compiler.target>
   </properties>
   <build>
   <plugins>

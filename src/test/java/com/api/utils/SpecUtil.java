@@ -50,6 +50,24 @@ public class SpecUtil {
         return requestSpecification;
     }
     
+    
+    
+    public static RequestSpecification requestSpecWithAuth(Role role,Object payload) {
+        RequestSpecification requestSpecification = new RequestSpecBuilder()
+            .setBaseUri(getProperty("BASE_URI"))
+            .setContentType(ContentType.JSON)
+            .setAccept(ContentType.JSON)
+            // Fetches token based on the role provided (e.g., FD, ADMIN)
+            .addHeader("Authorization", AuthTokenProvider.getToken(role))
+            .setBody(payload)
+            .log(LogDetail.URI)
+            .log(LogDetail.METHOD)
+            .log(LogDetail.HEADERS)
+            .log(LogDetail.BODY)
+            .build();
+            
+        return requestSpecification;
+    }
  // Method for requests with a body (POST/PUT/PATCH)
     public static RequestSpecification requestSpec(Object payload) {
         RequestSpecification requestSpecification = new RequestSpecBuilder()
