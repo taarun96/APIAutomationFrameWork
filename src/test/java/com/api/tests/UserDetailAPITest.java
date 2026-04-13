@@ -1,30 +1,30 @@
 package com.api.tests;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
 import java.io.IOException;
 
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import com.api.utils.SpecUtil;
+import static com.api.utils.SpecUtil.*;
 
-import io.restassured.module.jsv.JsonSchemaValidator;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 import static com.api.constants.Role.*;
 
 
 public class UserDetailAPITest {
-	@Test
+	@Test(description="Verify if UserDetails API are shown correctly",groups= {"api","regression","smoke"})
     public void userDetailsAPITest() throws IOException {
         
         given()
-            .spec(SpecUtil.requestSpecWithAuth(FD)) 
+            .spec(requestSpecWithAuth(FD)) 
         .when()
             .get("userdetails") 
         .then()
-            .spec(SpecUtil.responseSpec_OK()) 
+            .spec(responseSpec_OK()) 
             .and()
-            .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/UserDetailsResponseSchema.json"));
+            .body(matchesJsonSchemaInClasspath("response-schema/UserDetailsResponseSchema.json"));
     }
 
 }
