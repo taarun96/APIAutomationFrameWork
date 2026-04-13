@@ -1,24 +1,22 @@
 package com.api.tests;
 
-import static com.api.constants.Role.FD;
-import static com.api.utils.AuthTokenProvider.*;
-import static com.api.utils.ConfigManager.*;
+import static com.api.constants.Role.*;
 import static io.restassured.RestAssured.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import static org.hamcrest.Matchers.*;
+
 
 import org.testng.annotations.*;
 
-import com.api.utils.SpecUtil;
-
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
+import static com.api.utils.SpecUtil.*;
 
 public class MasterAPITest {
 
-	@Test
+	@Test(description="Verify if Master API response is shown correctly",groups= {"api","regression","smoke"})
 	public void masterAPITest() {
-		given().spec(SpecUtil.requestSpecWithAuth(FD))
+		given().spec(requestSpecWithAuth(FD))
 
-				.when().post("master").then().spec(SpecUtil.responseSpec_OK())
+				.when().post("master").then().spec(responseSpec_OK())
 
 			    .body("data", notNullValue()).body("data", hasKey("mst_oem")).body("data", hasKey("mst_model"))
 				.body("$", hasKey("message")).body("$", hasKey("data")).body("data.mst_oem.size()", equalTo(2))
@@ -27,9 +25,10 @@ public class MasterAPITest {
 				.body(matchesJsonSchemaInClasspath("response-schema/MasterResponseSchema.json"));
 	}
 
-	@Test
+	@Test(description="Verify if correct status code is displayed for Master API for "
+			+ "invalid Auth token",groups= {"negative","api","regression","smoke"})
 	public void masterAPITest_MissingAuthToken() {
-		given().spec(SpecUtil.requestSpec()).when().post("master").then().log().all()
-				.spec(SpecUtil.responseSpec_TEXT(401));
+		given().spec(requestSpec()).when().post("master").then().log().all()
+				.spec(responseSpec_TEXT(401));
 	}
 }
