@@ -10,7 +10,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvException;
 
-import com.demo.csv.UserPOJO;
+import com.demo.csv.UserBean;
 
 public class ReadCSVFileMapToPojo {
 	public static void main(String[] args) throws IOException, CsvException {
@@ -25,13 +25,13 @@ public class ReadCSVFileMapToPojo {
         CSVReader csvReader=new CSVReader(isr);
         
         
-        CsvToBean<UserPOJO> csvToBean =new CsvToBeanBuilder(csvReader)
-        		.withType(UserPOJO.class)
+        CsvToBean<UserBean> csvToBean =new CsvToBeanBuilder(csvReader)
+        		.withType(UserBean.class)
         		.withIgnoreEmptyLine(true)
         		.build();
         
         
-        List<UserPOJO> userList=csvToBean.parse();
+        List<UserBean> userList=csvToBean.parse();
         System.out.println(userList);
         
 }
