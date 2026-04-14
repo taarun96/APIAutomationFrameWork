@@ -3,6 +3,7 @@ package com.api.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.List;
 
 import com.dataproviders.api.bean.UserBean;
@@ -18,7 +19,7 @@ public class CSVReaderUtil {
 		
 	}
 	
-	public static void loadCSV(String pathOfCSVFile) throws IOException, CsvException {
+	public static Iterator<UserBean> loadCSV(String pathOfCSVFile) throws IOException, CsvException {
 		
 		
 
@@ -37,7 +38,7 @@ public class CSVReaderUtil {
         
         
         List<UserBean> userList=csvToBean.parse();
-        System.out.println(userList);
+        return userList.iterator();
         
 }
 }
