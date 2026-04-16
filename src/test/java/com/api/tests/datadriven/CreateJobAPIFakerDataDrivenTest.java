@@ -17,13 +17,15 @@ import static com.api.utils.SpecUtil.*;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
-public class CreateJobAPIDataDrivenTest {
+public class CreateJobAPIFakerDataDrivenTest {
+
+
 
 
 
 	@Test(description = "Verify if CreateJob API response is shown correctly", groups = { "api", "regression",
 			"data" },
-			dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIDataProvider")
+			dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIFakerDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload) {
 
 		given().spec(requestSpecWithAuth(FD, createJobPayload)).body(createJobPayload).when().post("/job/create").then()
@@ -32,5 +34,7 @@ public class CreateJobAPIDataDrivenTest {
 				.body("message", equalTo("Job created successfully. ")).body("data.mst_service_location_id", equalTo(1))
 				.body("data.job_number", startsWith("JOB_"));
 	}
+	
+	
 
 }

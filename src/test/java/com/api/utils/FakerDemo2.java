@@ -69,7 +69,7 @@ public class FakerDemo2 {
 
      
      Random random = new Random();
-     int randomProblemId = random.nextInt(26) + 1; 
+     int randomProblemId = random.nextInt(25) + 1; 
 
      System.out.println("Random Problem ID: " + randomProblemId);
 
