@@ -86,9 +86,9 @@ public class DataProviderUtils {
 	
 	
 	@DataProvider(name="LoginAPIExcelDataProvider",parallel=true)
-	public static Iterator<UserCredentials> createJobAPIExcelDataProvider() throws IOException, CsvException {
+	public static Iterator<UserBean> createJobAPIExcelDataProvider() throws IOException, CsvException {
 		
-			return ExcelReaderUtil2.loadExcel();
+			return ExcelReaderUtil2.loadExcel("LoginTestData",UserBean.class);
 	
 
 	}

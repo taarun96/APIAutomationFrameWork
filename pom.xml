@@ -53,6 +53,11 @@
     <version>${com.poi-ooxml.version}</version>
     <scope>compile</scope>
 </dependency>
+<dependency>
+  <groupId>com.github.ozlerhakan</groupId>
+  <artifactId>poiji</artifactId>
+  <version>${poiji.version}</version>
+</dependency>
 </dependencies>
   <properties>
     <restassured.version>6.0.0</restassured.version>
@@ -64,6 +69,7 @@
   <maven.compiler.target>16</maven.compiler.target>
   <com.github.javafaker.version>1.0.2</com.github.javafaker.version>
   <com.poi-ooxml.version>5.5.1</com.poi-ooxml.version>
+  <poiji.version>5.4.0</poiji.version>
   </properties>
   
   <build>
