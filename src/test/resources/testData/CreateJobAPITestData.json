@@ -1,0 +1,120 @@
+[
+	{
+    "mst_service_location_id": 0,
+    "mst_platform_id": 2,
+    "mst_warrenty_status_id": 1,
+    "mst_oem_id": 1,
+    "customer": {
+        "first_name": "Junior",
+        "last_name": "Gorczany",
+        "mobile_number": "492-392-9716",
+        "mobile_number_alt": "",
+        "email_id": "Neil_Cole@yahoo.com",
+        "email_id_alt": ""
+    },
+    "customer_address": {
+        "flat_number": "c 304",
+        "apartment_name": "Jupiter",
+        "street_name": "MG road",
+        "landmark": "Bangur Nagar",
+        "area": "Goregaon West",
+        "pincode": "411039",
+        "country": "India",
+        "state": "Maharashtra"
+    },
+    "customer_product": {
+        "dop": "2025-04-06T18:30:00.000Z",
+        "serial_number": "51161175640690",
+        "imei1": "51161175640690",
+        "imei2": "51161175640690",
+        "popurl": "2025-04-06T18:30:00.000Z",
+        "product_id": 1,
+        "mst_model_id": 1
+    },
+    "problems": [
+        {
+            "id": 1,
+            "remark": "Battery Issue"
+        }
+    ]
+},
+{
+    "mst_service_location_id": 0,
+    "mst_platform_id": 2,
+    "mst_warrenty_status_id": 1,
+    "mst_oem_id": 1,
+    "customer": {
+        "first_name": "Junior",
+        "last_name": "Gorczany",
+        "mobile_number": "492-392-9716",
+        "mobile_number_alt": "",
+        "email_id": "Neil_Cole@yahoo.com",
+        "email_id_alt": ""
+    },
+    "customer_address": {
+        "flat_number": "c 304",
+        "apartment_name": "Jupiter",
+        "street_name": "MG road",
+        "landmark": "Bangur Nagar",
+        "area": "Goregaon West",
+        "pincode": "411039",
+        "country": "India",
+        "state": "Maharashtra"
+    },
+    "customer_product": {
+        "dop": "2025-04-06T18:30:00.000Z",
+        "serial_number": "81161175640690",
+        "imei1": "81161175640690",
+        "imei2": "81161175640690",
+        "popurl": "2025-04-06T18:30:00.000Z",
+        "product_id": 1,
+        "mst_model_id": 1
+    },
+    "problems": [
+        {
+            "id": 1,
+            "remark": "Battery Issue"
+        }
+    ]
+},
+{
+    "mst_service_location_id": 0,
+    "mst_platform_id": 2,
+    "mst_warrenty_status_id": 1,
+    "mst_oem_id": 1,
+    "customer": {
+        "first_name": "Junior",
+        "last_name": "Gorczany",
+        "mobile_number": "492-392-9716",
+        "mobile_number_alt": "",
+        "email_id": "Neil_Cole@yahoo.com",
+        "email_id_alt": ""
+    },
+    "customer_address": {
+        "flat_number": "c 304",
+        "apartment_name": "Jupiter",
+        "street_name": "MG road",
+        "landmark": "Bangur Nagar",
+        "area": "Goregaon West",
+        "pincode": "411039",
+        "country": "India",
+        "state": "Maharashtra"
+    },
+    "customer_product": {
+        "dop": "2025-04-06T18:30:00.000Z",
+        "serial_number": "91161175640690",
+        "imei1": "91161175640690",
+        "imei2": "91161175640690",
+        "popurl": "2025-04-06T18:30:00.000Z",
+        "product_id": 1,
+        "mst_model_id": 1
+    },
+    "problems": [
+        {
+            "id": 1,
+            "remark": "Battery Issue"
+        }
+    ]
+}
+
+]

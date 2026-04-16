@@ -69,7 +69,15 @@ public class DataProviderUtils {
 	@DataProvider(name="LoginAPIJSONDataProvider",parallel=true)
 	public static Iterator<UserCredentials> loginAPIJSONDataProvider() throws IOException, CsvException {
 		
-			return JsonReaderUtil.loadJSON("testData/demo.json",UserCredentials[].class);
+			return JsonReaderUtil.loadJSON("testData/LoginAPITestData.json",UserCredentials[].class);
+	
+
+	}
+	
+	@DataProvider(name="CreateJobAPIJSONDataProvider",parallel=true)
+	public static Iterator<CreateJobPayload> createJobAPIJSONDataProvider() throws IOException, CsvException {
+		
+			return JsonReaderUtil.loadJSON("testData/CreateJobAPITestData.json",CreateJobPayload[].class);
 	
 
 	}
