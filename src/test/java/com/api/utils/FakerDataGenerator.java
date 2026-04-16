@@ -16,7 +16,7 @@ import com.github.javafaker.Faker;
 public class FakerDataGenerator {
 	private static String COUNTRY = "INDIA";
 	private static Faker faker = new Faker(new Locale("en-IND"));
-	private static Random random = new Random();
+	private static Random RANDOM = new Random();
 	private static int MST_SERVICE_LOCATION_ID = 0;
 	private static int MST_PLATFORM_ID = 2;
 	private static int MST_WARRANTY_STATUS_ID = 1;
@@ -70,17 +70,20 @@ public class FakerDataGenerator {
 	}
 
 	private static List<Problems> generateFakeProblemsList() {
-		String fakeRemark = faker.lorem().sentence(3);
+	    int count = RANDOM.nextInt(3) + 1;
+	    int randomIndex;
+	    String fakeRemark;
+	    Problems problems;
+	    List<Problems> problemList = new ArrayList<Problems>();
 
-		int randomIndex = random.nextInt(validProblemsId.length);
-
-		Problems problems = new Problems(randomIndex, fakeRemark);
-
-		System.out.println(problems);
-
-		List<Problems> problemList = new ArrayList<Problems>();
-		problemList.add(problems);
-		return problemList;
+	    for (int i = 1; i <= count; i++) {
+	        // Generating a random Problem ID and adding it to the list
+	        randomIndex = RANDOM.nextInt(validProblemsId.length);
+	        fakeRemark = faker.lorem().sentence(5);
+	        problems = new Problems(validProblemsId[randomIndex], fakeRemark);
+	        problemList.add(problems); //
+	    }
+	    return problemList;
 	}
 
 	private static Customer generateFakeCustomerData() {
