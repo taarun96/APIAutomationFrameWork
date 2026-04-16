@@ -24,7 +24,7 @@ public class CreateJobAPIFakerDataDrivenTest {
 
 
 	@Test(description = "Verify if CreateJob API response is shown correctly", groups = { "api", "regression",
-			"data" },
+			"data","faker" },
 			dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIFakerDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload) {
 

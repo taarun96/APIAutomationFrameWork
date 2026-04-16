@@ -22,7 +22,7 @@ public class CreateJobAPIDataDrivenTest {
 
 
 	@Test(description = "Verify if CreateJob API response is shown correctly", groups = { "api", "regression",
-			"data" },
+			"data","csv" },
 			dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload) {
 
