@@ -9,22 +9,15 @@ import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
 
+public class LoginAPIJSONDataDrivenTest {
 
-public class LoginAPIDataDrivenTest {
-
-
-	
-	
-	@Test(description="Verify if loginAPI is working for imafd user",groups= {"regression","smoke","datadriven","csv"},
-			dataProviderClass=com.dataproviders.DataProviderUtils.class,
-			dataProvider="LoginAPIJSONDataProvider")
-	public void loginTest(UserCredentials userCredentials) {
+	@Test(description = "Verify if loginAPI is working for imafd user", groups = { "regression", "smoke", "datadriven",
+			"csv" }, dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "LoginAPIDataProvider")
+	public void loginTest(UserCredentials userbean) {
 
 		System.out.println("------->" + System.getProperty("env"));
-		
 
-		given().spec(requestSpec(userCredentials)).
-		when().post("login").then().spec(responseSpec_OK())
+		given().spec(requestSpec(userbean)).when().post("login").then().spec(responseSpec_OK())
 				.body(matchesJsonSchemaInClasspath("response-schema/LoginFirstResponseSchema.json"));
 
 	}
