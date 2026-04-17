@@ -18,10 +18,10 @@ public class ExcelReaderUtil2 {
 
 	}
 
-	public static <T> Iterator<T> loadExcel(String sheetName, Class<T> clazz) {
+	public static <T> Iterator<T> loadTestData(String fileName,String sheetName, Class<T> clazz) {
 	    // APACHE POI OOXML LIB
 	    InputStream is = Thread.currentThread().getContextClassLoader()
-	            .getResourceAsStream("testData/PhoenixTestData.xlsx");
+	            .getResourceAsStream(fileName);
 	    XSSFWorkbook myWorkBook = null;
 	    try {
 	        myWorkBook = new XSSFWorkbook(is);
