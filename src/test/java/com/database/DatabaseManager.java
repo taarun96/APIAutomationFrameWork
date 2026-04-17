@@ -10,7 +10,7 @@ public class DatabaseManager {
 	
 	
 	private static final String DB_URL = ConfigManager.getProperty("DB_URL");
-	private static final String DB_USER_NAME = ConfigManager.getProperty("DB_USER_NAME");
+	private static final String DB_USER_NAME = ConfigManager.getProperty("DB_USERNAME");
 	private static final String DB_PASSWORD = ConfigManager.getProperty("DB_PASSWORD");
 	
 	
