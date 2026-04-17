@@ -19,10 +19,15 @@ public class DatabaseManager {
 	}
 	private static Connection conn;
 	public synchronized static void createConnection() throws SQLException {
-		if(conn==null) {
+		if(conn==null) {   //first check which all thrreads will enter
+			synchronized(DatabaseManager.class) {
+				if(conn==null) {  //only one connection checks for first connecction only
 		 conn=DriverManager.getConnection(DB_URL, DB_USER_NAME,
 				DB_PASSWORD);
+		 System.out.println(conn);
+			}
+			}
 		}
-		System.out.println(conn);
+		
 	}
 }
