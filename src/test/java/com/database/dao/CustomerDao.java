@@ -1,24 +1,30 @@
 package com.database.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.database.DatabaseManager;
 import com.database.model.CustomerDBModel;
 
 public class CustomerDao {
     
-    // Executing the query for the tr_customer table! which will get the details of the customer!
+	// Using '?' as a placeholder for the parameter
     private static final String CUSTOMER_DETAIL_QUERY = """
-            SELECT * from tr_customer where id=255174
+            SELECT * from tr_customer where id=?
             """;
 
-    public static CustomerDBModel getCustomerInfo() throws SQLException {
+    public static CustomerDBModel getCustomerInfo(int customerId) throws SQLException {
         Connection conn = DatabaseManager.getConnection();
-        Statement statement = conn.createStatement();
-        ResultSet resultSet = statement.executeQuery(CUSTOMER_DETAIL_QUERY);
+        
+        // Creating a PreparedStatement instead of a regular Statement
+        PreparedStatement preparedStatement = conn.prepareStatement(CUSTOMER_DETAIL_QUERY);
+        
+        // Mapping the customerId to the first '?' in the query
+        preparedStatement.setInt(1, customerId);
+        
+        ResultSet resultSet = preparedStatement.executeQuery();
         CustomerDBModel customerDBModel = null;
         while(resultSet.next()) {
             System.out.println(resultSet.getString("first_name"));

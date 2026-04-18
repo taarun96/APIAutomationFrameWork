@@ -11,7 +11,7 @@ public class DemoDaoRunner {
 	
 	public static void main(String[] args) throws SQLException {
         // Fetching data from the DB using the DAO
-        CustomerDBModel customerDBData = CustomerDao.getCustomerInfo();
+        CustomerDBModel customerDBData = CustomerDao.getCustomerInfo(255174);
         
         System.out.println(customerDBData);
         System.out.println(customerDBData.getFirst_name());
