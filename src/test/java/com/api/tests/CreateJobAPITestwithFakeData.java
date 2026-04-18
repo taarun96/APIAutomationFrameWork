@@ -14,11 +14,14 @@ import org.testng.annotations.Test;
 import com.api.constants.Role;
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
+import com.api.response.model.CreateJobResponseModel;
 import com.api.utils.FakerDataGenerator;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
+import com.database.dao.MapJobProblemDao;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
+import com.database.model.MapJobProblemModel;
 
 
 public class CreateJobAPITestwithFakeData {
@@ -64,6 +67,10 @@ public class CreateJobAPITestwithFakeData {
 		Assert.assertEquals (customerAddressFromDB.getCountry(),createJobPayload.customer_address().country());
 		Assert.assertEquals (customerAddressFromDB.getPincode(),createJobPayload.customer_address().pincode());
 
+		
+		
+	
+		
 	
 	}
 
