@@ -72,6 +72,13 @@
     <version>${HikariCP.version}</version>
     <scope>compile</scope>
 </dependency>
+<!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>${lombok.version}</version>
+    <scope>compile</scope>
+</dependency>
 </dependencies>
   <properties>
     <restassured.version>6.0.0</restassured.version>
@@ -86,6 +93,7 @@
   <poiji.version>5.4.0</poiji.version>
   <mysql-connector-j.version>9.6.0</mysql-connector-j.version>
   <HikariCP.version>7.0.2</HikariCP.version>
+  <lombok.version>1.18.44</lombok.version>
   </properties>
   
   <build>
