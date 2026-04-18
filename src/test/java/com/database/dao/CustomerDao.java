@@ -7,38 +7,49 @@ import java.sql.SQLException;
 
 import com.database.DatabaseManager;
 import com.database.model.CustomerDBModel;
+import com.database.model.CustomerProductDBModel;
 
 public class CustomerDao {
-    
-	// Using '?' as a placeholder for the parameter
-    private static final String CUSTOMER_DETAIL_QUERY = """
-            SELECT * from tr_customer where id=?
-            """;
+//Executing the query for the tr_customer table! which will get the details of the customer!
 
-    public static CustomerDBModel getCustomerInfo(int customerId) throws SQLException {
-        Connection conn = DatabaseManager.getConnection();
-        
-        // Creating a PreparedStatement instead of a regular Statement
-        PreparedStatement preparedStatement = conn.prepareStatement(CUSTOMER_DETAIL_QUERY);
-        
-        // Mapping the customerId to the first '?' in the query
-        preparedStatement.setInt(1, customerId);
-        
-        ResultSet resultSet = preparedStatement.executeQuery();
-        CustomerDBModel customerDBModel = null;
-        while(resultSet.next()) {
-            System.out.println(resultSet.getString("first_name"));
-            System.out.println(resultSet.getString("email_id"));
-         // Line 32-34: Mapping the database row to the Java Object
-            customerDBModel = new CustomerDBModel(
-                resultSet.getString("first_name"),
-                resultSet.getString("last_name"),
-                resultSet.getString("mobile_number"),
-                resultSet.getString("mobile_number_alt"),
-                resultSet.getString("email_id"),
-                resultSet.getString("email_id_alt"));
-        }
-        
-        return customerDBModel;
-    }
+	private static final String CUSTOMER_DETAIL_QUERY = """
+			SELECT * from tr_customer where id= ?
+			""";
+
+	private CustomerDao() {
+
+	}
+
+	public static CustomerDBModel getCustomerInfo(int customerId) {
+		CustomerDBModel customerDBModel = null;
+		try {
+			Connection conn = DatabaseManager.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(CUSTOMER_DETAIL_QUERY);
+			preparedStatement.setInt(1, customerId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+
+				customerDBModel = new CustomerDBModel(
+						resultSet.getInt("id"),
+					
+						resultSet.getString("first_name"),
+						resultSet.getString("last_name"), 
+						resultSet.getString("mobile_number"),
+						resultSet.getString("mobile_number_alt"), 
+						resultSet.getString("email_id"),
+						resultSet.getString("email_id_alt"),
+						resultSet.getInt("tr_customer_address_id")
+						
+						);
+
+			}
+		} catch (SQLException e) {
+			System.err.print(e.getMessage());
+		}
+
+		return customerDBModel;
+	}
+
+	
 }
