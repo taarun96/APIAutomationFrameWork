@@ -15,6 +15,7 @@ public class EnvUtil {
     }
     
     public static String getValue(String varName) {
+    	System.out.println("******Secrets Reading from .env file****");
         return dotenv.get(varName);
     }
 }
