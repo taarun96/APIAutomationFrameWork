@@ -79,6 +79,11 @@
     <version>${lombok.version}</version>
     <scope>compile</scope>
 </dependency>
+<dependency>
+    <groupId>io.github.cdimascio</groupId>
+    <artifactId>dotenv-java</artifactId>
+    <version>${dotenv-java.version}</version>
+</dependency>
 </dependencies>
   <properties>
     <restassured.version>6.0.0</restassured.version>
@@ -94,6 +99,7 @@
   <mysql-connector-j.version>9.6.0</mysql-connector-j.version>
   <HikariCP.version>7.0.2</HikariCP.version>
   <lombok.version>1.18.44</lombok.version>
+  <dotenv-java.version>3.2.0</dotenv-java.version>
   </properties>
   
   <build>
