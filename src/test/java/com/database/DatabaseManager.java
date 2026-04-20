@@ -14,7 +14,6 @@ public class DatabaseManager {
 	private static final String DB_URL = EnvUtil.getValue("DB_URL");
 	private static final String DB_USERNAME = EnvUtil.getValue("DB_USERNAME");
 	private static final String DB_PASSWORD = EnvUtil.getValue("DB_PASSWORD");
-	System.out.println("******Secrets Reading from .env file");
 	private static HikariConfig hikariConfig;
 	private volatile static HikariDataSource hikariDataSource;
 	private static int MAXIMUM_SIZE_POOL=Integer.parseInt(ConfigManager.getProperty("MAXIMUM_POOL_SIZE"));
