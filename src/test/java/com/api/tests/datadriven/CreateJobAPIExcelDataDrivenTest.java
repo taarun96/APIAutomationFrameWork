@@ -1,36 +1,40 @@
 package com.api.tests.datadriven;
 
-import static com.api.constants.Role.*;
-import static com.api.utils.DateTimeUtil.*;
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
+import static com.api.utils.SpecUtil.responseSpec_OK;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.startsWith;
 
-import java.util.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import org.testng.annotations.*;
-
-import com.api.constants.*;
-
-import com.api.request.model.*;
-
-import static com.api.utils.SpecUtil.*;
-
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
+import com.api.constants.Role;
+import com.api.request.model.CreateJobPayload;
+import com.api.services.JobService;
 
 public class CreateJobAPIExcelDataDrivenTest {
+	private JobService jobService;
 
+	@BeforeMethod(description = "Instantiating the Job Service")
+	public void setup() {
+		
+		jobService = new JobService();
+	}
+	@Test(description = "Verifying if create job api is able to create Inwrranty job", groups ={"api", "regression","datadriven","csv"},
+			dataProviderClass = com.dataproviders.DataProviderUtils.class,
+			dataProvider = "CreateJobAPIExcelDataProvider"
+			)
 
-
-	@Test(description = "Verify if CreateJob API response is shown correctly", groups = { "api", "regression",
-			"data","csv" },
-			dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIExcelDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload) {
 
-		given().spec(requestSpecWithAuth(FD, createJobPayload)).body(createJobPayload).when().post("/job/create").then()
-				.spec(responseSpec_OK())
-				.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
-				.body("message", equalTo("Job created successfully. ")).body("data.mst_service_location_id", equalTo(1))
-				.body("data.job_number", startsWith("JOB_"));
-	}
+		jobService.createJob(Role.FD, createJobPayload)
+		.then()
+		.spec(responseSpec_OK())
+		.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
+		.body("message",equalTo("Job created successfully. "))
+		.body("data.mst_service_location_id",equalTo(1))
+		.body("data.job_number",startsWith("JOB_"));
 
+	}
+	
 }
