@@ -1,30 +1,32 @@
 package com.api.tests;
 
-import static io.restassured.RestAssured.*;
+import static com.api.constants.Role.FD;
+import static com.api.utils.SpecUtil.responseSpec_OK;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import java.io.IOException;
 
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import static com.api.utils.SpecUtil.*;
-
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
-
-import static com.api.constants.Role.*;
-
+import com.api.services.UserService;
 
 public class UserDetailAPITest {
-	@Test(description="Verify if UserDetails API are shown correctly",groups= {"api","regression","smoke"})
-    public void userDetailsAPITest() throws IOException {
-        
-        given()
-            .spec(requestSpecWithAuth(FD)) 
-        .when()
-            .get("userdetails") 
-        .then()
-            .spec(responseSpec_OK()) 
-            .and()
-            .body(matchesJsonSchemaInClasspath("response-schema/UserDetailsResponseSchema.json"));
-    }
 
+	private UserService userService;
+
+	@BeforeMethod(description = "Setting up the UserService instance")
+	public void setup() {
+		userService = new UserService();
+
+	}
+
+	@Test(description = "Verify if the Userdetails API response is shown correctly", groups = { "api", "smoke",
+			"regression" })
+	public void userDetailsAPITest() throws IOException {
+
+		userService.userDetails(FD).then().spec(responseSpec_OK()).and()
+				.body(matchesJsonSchemaInClasspath("response-schema/UserDetailsResponseSchema.json"));
+
+	}
 }
