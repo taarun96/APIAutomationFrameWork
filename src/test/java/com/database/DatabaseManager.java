@@ -15,7 +15,7 @@ public class DatabaseManager {
 	private static final String DB_URL = EnvUtil.getValue("DB_URL");
 	private static final String DB_USERNAME = EnvUtil.getValue("DB_USERNAME");
 	private static final String DB_PASSWORD = EnvUtil.getValue("DB_PASSWORD");
-	*/
+	 */
 	
 	private  static Connection conn;  //volatile anything happens to this , all threads be aware of it
 	private static boolean isVaultUp = true;
