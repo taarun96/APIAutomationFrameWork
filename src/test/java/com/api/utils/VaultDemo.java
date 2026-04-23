@@ -10,8 +10,11 @@ import com.bettercloud.vault.response.LogicalResponse;
 public class VaultDemo {
 
     public static void main(String[] args) throws VaultException {
-
-        VaultConfig vaultConfig = new VaultConfig()
+    	String data=System.getenv("VAULT_SERVER");
+    	System.out.println(data);
+    	String data1=System.getenv("VAULT_TOKEN");
+    	System.out.println(data1);
+       /* VaultConfig vaultConfig = new VaultConfig()
                 .address("http://3.16.1.150:8200")
                 .token("root")
                 .build();
@@ -26,6 +29,6 @@ public class VaultDemo {
         System.out.println(dataMap.get("DB_URL"));
         System.out.println(dataMap.get("DB_USERNAME"));
         System.out.println(dataMap.get("DB_PASSWORD"));
-        
+        */
     }
 }
