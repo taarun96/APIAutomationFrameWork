@@ -1,21 +1,16 @@
 package com.api.tests.datadriven;
 
-import static com.api.constants.Role.*;
-import static com.api.utils.DateTimeUtil.*;
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
+import static com.api.constants.Role.FD;
+import static com.api.utils.SpecUtil.requestSpecWithAuth;
+import static com.api.utils.SpecUtil.responseSpec_OK;
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.startsWith;
 
-import java.util.*;
+import org.testng.annotations.Test;
 
-import org.testng.annotations.*;
-
-import com.api.constants.*;
-
-import com.api.request.model.*;
-
-import static com.api.utils.SpecUtil.*;
-
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
+import com.api.request.model.CreateJobPayload;
 
 public class CreateJobAPIDBDataDrivenTest {
 
