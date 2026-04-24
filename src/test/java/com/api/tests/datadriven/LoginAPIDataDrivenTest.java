@@ -24,7 +24,7 @@ public class LoginAPIDataDrivenTest {
 	public void loginAPITest(UserBean userbean) {
 
 		authService.login(userbean).then().spec(responseSpec_OK()).body("message", equalTo("Success")).and()
-				.body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
+				.body(matchesJsonSchemaInClasspath("response-schema/LoginFirstResponseSchema.json"));
 
 	}
 
