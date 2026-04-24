@@ -1,149 +1,193 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>RestAssuredAutomationFramework</groupId>
-  <artifactId>RestAssuredAutomationFramework</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>RestAssuredAutomationFramework</name>
-  <description>RestAssuredAutomationFramework with Java,TestNG,Rest Assured </description>
-  <!-- Source: https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
-<dependencies>
-<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>rest-assured</artifactId>
-    <version>${restassured.version}</version>
-    <scope>test</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>${jackson-databind.version}</version>
-    <scope>compile</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
-<dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-    <version>${testng.version}</version>
-    <scope>test</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
-<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>json-schema-validator</artifactId>
-    <version>${io.rest-assured.version}</version>
-    <scope>compile</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/com.opencsv/opencsv -->
-<dependency>
-    <groupId>com.opencsv</groupId>
-    <artifactId>opencsv</artifactId>
-    <version>${com.openscv.version}</version>
-			<scope>compile</scope>
-</dependency>
-<dependency>
-    <groupId>com.github.javafaker</groupId>
-    <artifactId>javafaker</artifactId>
-    <version>${com.github.javafaker.version}</version>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi-ooxml</artifactId>
-    <version>${com.poi-ooxml.version}</version>
-    <scope>compile</scope>
-</dependency>
-<dependency>
-  <groupId>com.github.ozlerhakan</groupId>
-  <artifactId>poiji</artifactId>
-  <version>${poiji.version}</version>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-<dependency>
-    <groupId>com.mysql</groupId>
-    <artifactId>mysql-connector-j</artifactId>
-    <version>${mysql-connector-j.version}</version>
-    <scope>compile</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
-<dependency>
-    <groupId>com.zaxxer</groupId>
-    <artifactId>HikariCP</artifactId>
-    <version>${HikariCP.version}</version>
-    <scope>compile</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <version>${lombok.version}</version>
-    <scope>compile</scope>
-</dependency>
-<dependency>
-    <groupId>io.github.cdimascio</groupId>
-    <artifactId>dotenv-java</artifactId>
-    <version>${dotenv-java.version}</version>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/com.bettercloud/vault-java-driver -->
-<dependency>
-    <groupId>com.bettercloud</groupId>
-    <artifactId>vault-java-driver</artifactId>
-    <version>${vault-java-driver.version}</version>
-    <scope>compile</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-core</artifactId>
-    <version>2.25.4</version>
-    <scope>compile</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl -->
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-slf4j2-impl</artifactId>
-    <version>2.25.4</version>
-    <scope>compile</scope>
-</dependency>
-<!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-api</artifactId>
-    <version>2.25.4</version>
-    <scope>compile</scope>
-</dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>RestAssuredAutomationFramework</groupId>
+	<artifactId>RestAssuredAutomationFramework</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>RestAssuredAutomationFramework</name>
+	<description>RestAssuredAutomationFramework with Java,TestNG,Rest Assured </description>
+	<!-- Source: https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.5</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+					</suiteXmlFiles>
+						<systemPropertyVariables>
+						<allure.results.directory>
+							${project.build.directory}/allure-results</allure.results.directory>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>2.12.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.15.0</version>
+				<configuration>
+					<source>16</source>
+					<target>16</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.38</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-</dependencies>
-  <properties>
-    <restassured.version>6.0.0</restassured.version>
-    <testng.version>7.12.0</testng.version>
-    <io.rest-assured.version>6.0.0</io.rest-assured.version>
-    <jackson-databind.version>2.15.2</jackson-databind.version>
-    <com.openscv.version>5.12.0</com.openscv.version>
-  <maven.compiler.source>16</maven.compiler.source>
-  <maven.compiler.target>16</maven.compiler.target>
-  <com.github.javafaker.version>1.0.2</com.github.javafaker.version>
-  <com.poi-ooxml.version>5.5.1</com.poi-ooxml.version>
-  <poiji.version>5.4.0</poiji.version>
-  <mysql-connector-j.version>9.6.0</mysql-connector-j.version>
-  <HikariCP.version>7.0.2</HikariCP.version>
-  <lombok.version>1.18.44</lombok.version>
-  <dotenv-java.version>3.2.0</dotenv-java.version>
-  <vault-java-driver.version>5.1.0</vault-java-driver.version>
-  </properties>
-  
-  <build>
-  <plugins>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.5</version>
-        <configuration>
-          <suiteXmlFiles>
-            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-          </suiteXmlFiles>
-        </configuration>
-      </plugin>
-      </plugins>
-      </build>
-</project>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson-databind.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${io.rest-assured.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>${com.openscv.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>${com.github.javafaker.version}</version>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${com.poi-ooxml.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.ozlerhakan</groupId>
+			<artifactId>poiji</artifactId>
+			<version>${poiji.version}</version>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>${mysql-connector-j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${HikariCP.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>dotenv-java</artifactId>
+			<version>${dotenv-java.version}</version>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/com.bettercloud/vault-java-driver -->
+		<dependency>
+			<groupId>com.bettercloud</groupId>
+			<artifactId>vault-java-driver</artifactId>
+			<version>${vault-java-driver.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.25.4</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j2-impl</artifactId>
+			<version>2.25.4</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.25.4</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-testng</artifactId>
+			<version>2.34.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+	</dependencies>
+	<properties>
+		<restassured.version>6.0.0</restassured.version>
+		<testng.version>7.12.0</testng.version>
+		<io.rest-assured.version>6.0.0</io.rest-assured.version>
+		<jackson-databind.version>2.15.2</jackson-databind.version>
+		<com.openscv.version>5.12.0</com.openscv.version>
+		<maven.compiler.source>16</maven.compiler.source>
+		<maven.compiler.target>16</maven.compiler.target>
+		<com.github.javafaker.version>1.0.2</com.github.javafaker.version>
+		<com.poi-ooxml.version>5.5.1</com.poi-ooxml.version>
+		<poiji.version>5.4.0</poiji.version>
+		<mysql-connector-j.version>9.6.0</mysql-connector-j.version>
+		<HikariCP.version>7.0.2</HikariCP.version>
+		<lombok.version>1.18.44</lombok.version>
+		<dotenv-java.version>3.2.0</dotenv-java.version>
+		<vault-java-driver.version>5.1.0</vault-java-driver.version>
+	</properties>
+
+	</project>
