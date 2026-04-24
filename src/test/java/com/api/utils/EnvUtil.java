@@ -1,21 +1,27 @@
 package com.api.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class EnvUtil {
+
 	private static Dotenv dotenv;
+	private static final Logger LOGGER = LogManager.getLogger(EnvUtil.class);
 
-    static {
-        // Loads the .env file from the project root
-        dotenv = Dotenv.load();
-    }
+	static {
+		LOGGER.info("Loading the .env file.....");
+		dotenv = Dotenv.load();
+	}
 
-    // Private constructor to prevent instantiation
-    private EnvUtil() {
-    }
-    
-    public static String getValue(String varName) {
-    	System.out.println("******Secrets Reading from .env file****");
-        return dotenv.get(varName);
-    }
+	private EnvUtil() {
+
+	}
+
+	public static String getValue(String varName) {
+		LOGGER.info("Reading the value of {} from .env", varName);
+
+		return dotenv.get(varName);
+	}
 }

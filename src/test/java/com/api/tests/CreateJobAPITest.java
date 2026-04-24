@@ -34,11 +34,11 @@ public class CreateJobAPITest {
 
 	@BeforeMethod(description = "Creating createjob api request payload and instantiating the Job Service")
 	public void setup() {
-		Customer customer = new Customer("Jatin", "Shharma", "7045663552", "", "jatinvsharma@gmail.com", "");
+		Customer customer = new Customer("Taarun", "Purusothaman", "7045663552", "", "jatinvsharma@gmail.com", "");
 		CustomerAddress customerAddress = new CustomerAddress("D 404", "Vasant Galaxy", "Bangur nagar", "Inorbit",
 				"Mumbai", "411039", "India", "Maharashtra");
-		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "134530332084456",
-				"134530332084456", "134530332084456", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(),
+		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "139530332084456",
+				"139530332084456", "139530332084456", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(),
 				Model.NEXUS_2_BLUE.getCode());
 		Problems problems = new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
 
