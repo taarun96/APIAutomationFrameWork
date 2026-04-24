@@ -1,13 +1,17 @@
 package com.api.utils;
 
+import static com.api.constants.Role.ENG;
+import static com.api.constants.Role.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.constants.Role;
-import static com.api.constants.Role.*;
 import com.api.request.model.UserCredentials;
 
 import io.restassured.http.ContentType;
@@ -15,18 +19,20 @@ import io.restassured.http.ContentType;
 public class AuthTokenProvider {
 
 	private static Map<Role, String> tokenCache = new ConcurrentHashMap<Role, String>();
+	private static final Logger LOGGER = LogManager.getLogger(AuthTokenProvider.class);
 
 	private AuthTokenProvider() {
 
 	}
 
 	public static String getToken(Role role) {
-//I want to make the request for the login api and we want to extract the token and 
-//print it on the console!!
 
+		LOGGER.info("Checking if the token for {} is present in the cache",role);
 		if (tokenCache.containsKey(role)) {
+			LOGGER.info("token found for {}",role);
 			return tokenCache.get(role);
 		}
+		LOGGER.info("token Not found making the login requsest for the role {}",role);
 
 		UserCredentials userCredentials = null;
 		if (role == FD) {
@@ -53,7 +59,7 @@ public class AuthTokenProvider {
 				.body("message", equalTo("Success"))
 
 				.extract().body().jsonPath().getString("data.token");
-
+		LOGGER.info("Token cached for future request");
 		tokenCache.put(role, token);
 		return token;
 

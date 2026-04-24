@@ -2,34 +2,42 @@ package com.api.tests;
 
 import static com.api.utils.SpecUtil.responseSpec_OK;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.io.IOException;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
 import com.api.services.AuthService;
+import com.dataproviders.api.bean.UserBean;
+
+import io.restassured.response.Response;
 
 
+@Listeners(com.listeners.APITestListener.class)
 public class LoginFirstAPITest {
 
-	private UserCredentials userCredentials ;
-    private AuthService authService;
-	@BeforeMethod(description="Create the request payload for login API")
+
+	private UserBean userCredentials;
+	private AuthService authService;
+	
+	@BeforeMethod(description = "Create the Payload for the Login API")
 	public void setup() {
-		userCredentials	= new UserCredentials("iamfd", "password");
-		authService=new AuthService();
+		userCredentials	 = new UserBean("iamfd", "password");
+		authService = new AuthService();
 	}
 	
-	
-	
-	@Test(description="Verify if loginAPI is working for imafd user",groups= {"regression","smoke","api"})
-	public void loginTest() {
+	@Test(description = "Verifying if login api is working for FD user", groups ={"api", "regression","smoke"}  )
+	public void loginAPITest() throws IOException {
 
-		System.out.println("------->" + System.getProperty("env"));
-		
-		authService.login(userCredentials).
-		then().spec(responseSpec_OK())
-				.body(matchesJsonSchemaInClasspath("response-schema/LoginFirstResponseSchema.json"));
+		authService.login(userCredentials)
+		.then().spec(responseSpec_OK())
+		.body("message", equalTo("Success"))
+		.and()
+		.body(matchesJsonSchemaInClasspath("response-schema/LoginFirstResponseSchema.json"));
 
 	}
 

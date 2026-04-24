@@ -7,10 +7,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.database.DatabaseManager;
 import com.dataproviders.api.bean.CreateJobBean;
 
 public class CreateJobAPIPayloadDataDao {
+
+	private static final Logger LOGGER = LogManager.getLogger(CreateJobAPIPayloadDataDao.class);
+
 	private static final String SQL_QUERY = """
 			SELECT
 				mst_service_location_id,
@@ -59,20 +65,23 @@ public class CreateJobAPIPayloadDataDao {
 				LIMIT 5;
 							""";
 
-	
 	private CreateJobAPIPayloadDataDao() {
-		
+
 	}
+
 	public static List<CreateJobBean> getCreateJobPayLoadData() {
 		// I need the connection --- DatabaseManager
 		Connection conn = null;
 		Statement statement;
 		ResultSet resultSet = null;
 		List<CreateJobBean> beanList = new ArrayList<CreateJobBean>();
-		
+
 		try {
+			LOGGER.info("Getting the connection from the Database Manager");
 			conn = DatabaseManager.getConnection();
 			statement = conn.createStatement();
+			LOGGER.info("Executing the SQL Query {}", SQL_QUERY);
+
 			resultSet = statement.executeQuery(SQL_QUERY);
 			while (resultSet.next()) {
 				CreateJobBean bean = new CreateJobBean();
@@ -106,10 +115,11 @@ public class CreateJobAPIPayloadDataDao {
 				beanList.add(bean);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			LOGGER.error("Cannot convert the result set to the bean", e);
+
 			e.printStackTrace();
 		}
-		for( CreateJobBean b:beanList) {
+		for (CreateJobBean b : beanList) {
 			System.out.println(b);
 		}
 		return beanList;
