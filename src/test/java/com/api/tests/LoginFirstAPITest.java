@@ -17,6 +17,7 @@ import com.dataproviders.api.bean.UserBean;
 import io.restassured.response.Response;
 
 
+@Listeners(com.listeners.APITestListener.class)
 public class LoginFirstAPITest {
 
 
@@ -36,7 +37,7 @@ public class LoginFirstAPITest {
 		.then().spec(responseSpec_OK())
 		.body("message", equalTo("Success"))
 		.and()
-		.body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
+		.body(matchesJsonSchemaInClasspath("response-schema/LoginFirstResponseSchema.json"));
 
 	}
 
