@@ -1,0 +1,22 @@
+<Configuration>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d [%t] %highlight{%5p} %c::%M():%L - %m%n"></PatternLayout>
+		</Console>
+
+		<File name="FileAppender" fileName="logs/application.log">
+			<PatternLayout pattern="%d [%t] %highlight{%5p} %c::%M():%L - %m%n"></PatternLayout>
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console"></AppenderRef>
+			<AppenderRef ref="FileAppender"></AppenderRef>
+
+
+		</Root>
+
+	</Loggers>
+</Configuration>

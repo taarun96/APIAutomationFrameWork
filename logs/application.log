@@ -1,0 +1,17 @@
+2026-04-24 16:54:45,316 [main] [32m INFO[m com.demo.Demo::main():10 - Inside the main method
+2026-04-24 16:54:45,327 [main] [32m INFO[m com.demo.Demo::main():13 - Value of a 10 
+2026-04-24 16:54:45,328 [main] [32m INFO[m com.demo.Demo::main():17 - Value of b 20 
+2026-04-24 16:54:45,329 [main] [32m INFO[m com.demo.Demo::main():21 - Final Result 30 
+2026-04-24 16:54:45,330 [main] [32m INFO[m com.demo.Demo::main():25 - Program ended!!!
+2026-04-24 16:57:53,131 [main] [32m INFO[m com.demo.Demo2::main():11 - Inside the main method
+2026-04-24 16:57:53,134 [main] [32m INFO[m com.demo.Demo2::main():13 - Value of a 10
+2026-04-24 16:57:53,134 [main] [33m WARN[m com.demo.Demo2::main():17 - Value of b 0
+2026-04-24 16:57:53,135 [main] [1;31mERROR[m com.demo.Demo2::main():29 - Operation cannot happen
+java.lang.ArithmeticException: / by zero
+	at com.demo.Demo2.main(Demo2.java:24)
+2026-04-24 16:58:28,109 [main] [32m INFO[m com.demo.Demo2::main():11 - Inside the main method
+2026-04-24 16:58:28,113 [main] [32m INFO[m com.demo.Demo2::main():13 - Value of a 10
+2026-04-24 16:58:28,113 [main] [33m WARN[m com.demo.Demo2::main():17 - Value of b 0
+2026-04-24 16:58:28,114 [main] [1;31mERROR[m com.demo.Demo2::main():29 - Operation cannot happen
+java.lang.ArithmeticException: / by zero
+	at com.demo.Demo2.main(Demo2.java:24)
