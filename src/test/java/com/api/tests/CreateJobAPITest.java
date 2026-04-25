@@ -27,7 +27,16 @@ import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.api.services.JobService;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 @Listeners(com.listeners.APITestListener.class)
+@Epic("Job Management")
+@Feature("Job Creation")
 public class CreateJobAPITest {
 
 	private JobService jobService;
@@ -35,11 +44,11 @@ public class CreateJobAPITest {
 
 	@BeforeMethod(description = "Creating createjob api request payload and instantiating the Job Service")
 	public void setup() {
-		Customer customer = new Customer("Taarun", "Purusothaman", "7045663552", "", "jatinvsharma@gmail.com", "");
+		Customer customer = new Customer("Jatin", "Shharma", "7045663552", "", "jatinvsharma@gmail.com", "");
 		CustomerAddress customerAddress = new CustomerAddress("D 404", "Vasant Galaxy", "Bangur nagar", "Inorbit",
 				"Mumbai", "411039", "India", "Maharashtra");
-		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "139530332084456",
-				"139530332084456", "139530332084456", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(),
+		CustomerProduct customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "134530332084456",
+				"134530332084456", "134530332084456", getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(),
 				Model.NEXUS_2_BLUE.getCode());
 		Problems problems = new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
 
@@ -52,7 +61,10 @@ public class CreateJobAPITest {
 		jobService = new JobService();
 	}
 
-	@Test(description = "Verifying if create job api is able to create Inwrranty job", groups = { "api", "regression",
+	@Story("FD should be able to create job")
+	@Description("Verifying if FD is able to use create job api and Inwrranty job is created")
+	@Severity(SeverityLevel.BLOCKER)
+	@Test(description = "Verifying if FD is able to use create job api and Inwrranty job is created", groups = { "api", "regression",
 			"smoke" })
 
 	public void createJobAPITest() {

@@ -6,7 +6,10 @@
     <class name="com.api.tests.LoginFirstAPITest"/>
                   <class name="com.api.tests.UserDetailAPITest"/>
             <class name="com.api.tests.CountAPITest"/>
+            <class name="com.api.tests.DetailsAPITest"/> 
                <class name="com.api.tests.MasterAPITest"/>
+            <class name="com.api.tests.CreateJobAPITest"/>
+
 
     </classes>
   </test>

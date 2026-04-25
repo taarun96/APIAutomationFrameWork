@@ -10,14 +10,21 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.api.request.model.UserCredentials;
+
 import com.api.services.AuthService;
 import com.dataproviders.api.bean.UserBean;
 
-import io.restassured.response.Response;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 
 
 @Listeners(com.listeners.APITestListener.class)
+@Epic("User Management")
+@Feature("Authentication")
 public class LoginFirstAPITest {
 
 
@@ -30,10 +37,14 @@ public class LoginFirstAPITest {
 		authService = new AuthService();
 	}
 	
+	
+	@Story("Valid User should be able to login into the System")
+	@Description("Verify if FD user is able login via api")
+	@Severity(SeverityLevel.BLOCKER)
 	@Test(description = "Verifying if login api is working for FD user", groups ={"api", "regression","smoke"}  )
 	public void loginAPITest() throws IOException {
 
-		authService.login(userCredentials)
+		authService.login(userCredentials)//To make the request!!
 		.then().spec(responseSpec_OK())
 		.body("message", equalTo("Success"))
 		.and()
