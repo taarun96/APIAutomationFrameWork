@@ -9,14 +9,16 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.api.request.model.UserCredentials;
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.qameta.allure.Step;
 
 public class JsonReaderUtil {
 	
 	private static final Logger LOGGER = LogManager.getLogger(JsonReaderUtil.class);
+	@Step("Loading test data from the json file")
+
+
 
 	public static <T> Iterator<T> loadJSON(String fileName, Class<T[]> clazz) {
 		

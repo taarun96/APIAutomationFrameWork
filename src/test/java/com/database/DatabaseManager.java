@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.api.utils.AuthTokenProvider;
 import com.api.utils.ConfigManager;
 import com.api.utils.EnvUtil;
 import com.api.utils.VaultDBConfig;
