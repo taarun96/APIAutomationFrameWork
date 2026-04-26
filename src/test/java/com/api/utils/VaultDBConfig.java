@@ -8,8 +8,9 @@ import org.apache.logging.log4j.Logger;
 import com.bettercloud.vault.Vault;
 import com.bettercloud.vault.VaultConfig;
 import com.bettercloud.vault.VaultException;
-import com.bettercloud.vault.response.HealthResponse;
 import com.bettercloud.vault.response.LogicalResponse;
+
+import io.qameta.allure.Step;
 
 public class VaultDBConfig {
 
@@ -33,6 +34,7 @@ public class VaultDBConfig {
 	private VaultDBConfig() {
 
 	}
+	@Step("Retriving the secret from the vault")
 
 	public static String getSecret(String key) {
 

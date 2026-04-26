@@ -1,7 +1,9 @@
 package com.api.utils;
 
 import static com.api.constants.Role.ENG;
-import static com.api.constants.Role.*;
+import static com.api.constants.Role.FD;
+import static com.api.constants.Role.QC;
+import static com.api.constants.Role.SUP;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -14,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import com.api.constants.Role;
 import com.api.request.model.UserCredentials;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 
 public class AuthTokenProvider {
@@ -25,6 +28,7 @@ public class AuthTokenProvider {
 
 	}
 
+	@Step("Getting the Auth token for the role")
 	public static String getToken(Role role) {
 
 		LOGGER.info("Checking if the token for {} is present in the cache",role);
