@@ -19,7 +19,7 @@ public class SpecUtil {
 //static method!!
 
 	// GET-- DEL
-	@Step("Setting up the BaseURI , Content Type as Application/JSON and attaching the SensitiveData Filter")
+	@Step("Setting up the BaseURI endpoint, Content Type as Application/JSON and attaching the SensitiveData Filter")
 	public static RequestSpecification requestSpec() {
 		// To take care of the common request sections (methods)
 		RequestSpecification request = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
