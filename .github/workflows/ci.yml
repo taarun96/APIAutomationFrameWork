@@ -2,78 +2,93 @@ name: Phoenix Test Automation Workflow
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
+
   pull_request:
-    branches: [ "master" ]
-  schedule: # Set the CRON for MIDNIGHT IST ---- UTC
+    branches:
+      - master
+
+  schedule:
+    # Set the CRON for MIDNIGHT IST ---- UTC
     - cron: "30 18 * * *"
     - cron: "30 17 * * *"
     - cron: "30 16 * * *"
-    
-  workflow_dispatch: 
+
+  workflow_dispatch:
     inputs:
       env:
         description: "Environment"
         type: choice
-        options: [qa,uat,dev]
+        options:
+          - qa
+          - uat
+          - dev
         default: qa
         required: true
+
       suiteXmlFile:
         description: "TestNG Xml File"
         type: choice
-        options: [testng.xml,smoke.xml,regression.xml,testng-datadriven.xml]
+        options:
+          - testng.xml
+          - smoke.xml
+          - regression.xml
+          - testng-datadriven.xml
         default: testng.xml
         required: true
+
+permissions:
+  contents: write
+
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
+      - uses: actions/checkout@v4
 
-    - name: Creating the .env file
-      run: |
-            echo "DB_URL=${{ secrets.DB_URL }}" >> .env
-            echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-    
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
 
-    - name: Default Values for Execution
-      id: default
-      run: |
-            echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml'}}" >> $GITHUB_OUTPUT
-            echo "env=${{ github.event.inputs.env || 'qa' }}" >> $GITHUB_OUTPUT
+      - name: Creating the .env file
+        run: |
+          echo "DB_URL=${{ secrets.DB_URL }}" >> .env
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
 
-    - name: Execute Test Automation Framework
-      run: mvn clean test -DsuiteXmlFile="${{ steps.default.outputs.suiteXmlFile }}" -Denv="${{ steps.default.outputs.env }}"
+      - name: Default Values for Execution
+        id: default
+        run: |
+          echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml' }}" >> $GITHUB_OUTPUT
+          echo "env=${{ github.event.inputs.env || 'qa' }}" >> $GITHUB_OUTPUT
 
-    - name: Generating Allure Report
-      if: always()
-      run: mvn allure:report
+      - name: Execute Test Automation Framework
+        run: |
+          mvn clean test \
+          -DsuiteXmlFile="${{ steps.default.outputs.suiteXmlFile }}" \
+          -Denv="${{ steps.default.outputs.env }}"
 
-    - name : Creating github page branch
-      if: always()
-      uses: peaceiris/actions-gh-pages@v4.0.0
-      with:
+      - name: Generating Allure Report
+        if: always()
+        run: mvn allure:report
+
+      - name: Creating GitHub Page Branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: target/site/allure-maven-plugin
-          
-    - name: Upload a Build Artifact
-      if: always()
-      uses: actions/upload-artifact@v4.6.2
-      with:
-        name: SureFire Report
-        path: target/surefire-reports/
-        retention-days: 10
 
-      
-
-  
+      - name: Upload a Build Artifact
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: SureFire Report
+          path: target/surefire-reports/
+          retention-days: 10
