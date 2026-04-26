@@ -6,11 +6,14 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.api.utils.AuthTokenProvider;
 import com.api.utils.ConfigManager;
 import com.api.utils.EnvUtil;
 import com.api.utils.VaultDBConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
+import io.qameta.allure.Step;
 
 public class DatabaseManager {
 	private static final Logger LOGGER = LogManager.getLogger(DatabaseManager.class);
@@ -32,11 +35,9 @@ public class DatabaseManager {
 	private static final String DB_USERNAME = loadSecret("DB_USERNAME");
 	private static final String DB_PASSWORD = loadSecret("DB_PASSWORD");
 
-
-
+	@Step("Loading Database Secrets")
 	public static String loadSecret(String key) {
 		String value = null;
-	
 
 		if (isVaultUp) {
 			value = VaultDBConfig.getSecret(key);
@@ -46,11 +47,11 @@ public class DatabaseManager {
 				isVaultUp = false;
 			} else {
 				System.out.println();
-				LOGGER.info("READING VALUE FOR KEY {} FROM VAULT......",key);
+				LOGGER.info("READING VALUE FOR KEY {} FROM VAULT......", key);
 				return value; // Coming from Vault!!
 			}
 		}
-	
+
 		LOGGER.info("READING VALUE FROM ENV......");
 
 		value = EnvUtil.getValue(key);
@@ -61,6 +62,7 @@ public class DatabaseManager {
 
 	}
 
+	@Step("Intializing the Database  Connection Pool")
 	private static void intializePool() {
 
 		if (hikariDataSource == null) { // First Check which all the parallel threads will enter
@@ -88,6 +90,7 @@ public class DatabaseManager {
 
 	}
 
+	@Step("Getting the Database Connection")
 	public static Connection getConnection() throws SQLException {
 		Connection connection = null;
 		if (hikariDataSource == null) {
